@@ -23,12 +23,13 @@ import { Mentions } from './entities/Mentions';
 import { Users } from './entities/Users';
 import { WorkspaceMembers } from './entities/WorkspaceMembers';
 import { Workspaces } from './entities/Workspaces';
+
 const getdata = async () => {
 
   return{
     DB_USERNAME: 'root',
     DB_PASSWORD: 'root',
-    DB_DATABASE: 'sleact'
+    DB_DATABASE: 'sleact2'
   }
 }
 @Module({
@@ -38,6 +39,7 @@ const getdata = async () => {
     WorkspacesModule,
     ChannelsModule,
     DmsModule,
+    TypeOrmModule.forFeature([Users]),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async(configService : ConfigService) => {

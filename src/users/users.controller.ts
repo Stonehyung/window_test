@@ -20,8 +20,8 @@ export class UsersController {
     }
     @ApiOperation( { summary : '회원 가입'})
     @Post() // 닉네임, 이메일, 비밀번호는 @Body()로 온다.
-    postUsers(@Body() data : userTypeDto){ //Body에 들어있는 데이터가 data 객체가 된다.
-        this.userService.PostUsers( data.nickname, data.email, data.password);
+    Postusers(@Body() data : userTypeDto){ //Body에 들어있는 데이터가 data 객체가 된다.
+        this.userService.join( data.nickname, data.email, data.password);
     }
     @ApiResponse({
       status: 200,
