@@ -23,6 +23,7 @@ import { Mentions } from './entities/Mentions';
 import { Users } from './entities/Users';
 import { WorkspaceMembers } from './entities/WorkspaceMembers';
 import { Workspaces } from './entities/Workspaces';
+import { AuthModule } from './auth/auth.module';
 
 const getdata = async () => {
 
@@ -34,6 +35,7 @@ const getdata = async () => {
 }
 @Module({
   imports: [
+    AuthModule,
     ConfigModule.forRoot({ isGlobal: true , load: [getdata]}),
     UsersModule,
     WorkspacesModule,
@@ -59,6 +61,7 @@ const getdata = async () => {
           Users,
           WorkspaceMembers,
           Workspaces,
+          
         ],
         migrations: [__dirname + '/src/migrations/*.ts'],
         cli: { migrationsDir: 'src/migrations' },
