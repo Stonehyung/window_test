@@ -1,26 +1,8 @@
-import { ApiProperty } from "@nestjs/swagger";
-
+import { ApiProperty, PickType } from "@nestjs/swagger";
+import { Users } from "src/entities/Users";
 // dto 생성 
-export class userTypeDto{
-   @ApiProperty({
-      example : 'qkdgkr1258@naver.com',
-      description : '이메일',
-      required : true,
-   })
-   public email : string;
-   
-
-   @ApiProperty( { 
-      example : 'choidol',
-      description : '닉네임',
-      required : true
-   })
-   public nickname : string;
-   
-   @ApiProperty( {
-      example : '1234',
-      description : '비밀번호',
-      required : true
-   })
-   public password : string;
-}
+export class userTypeDto extends PickType(Users, [
+   'email', 
+   'nickname', 
+   'password',
+ ] as const) {}

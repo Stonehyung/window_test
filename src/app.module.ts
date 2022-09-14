@@ -23,21 +23,27 @@ import { Mentions } from './entities/Mentions';
 import { Users } from './entities/Users';
 import { WorkspaceMembers } from './entities/WorkspaceMembers';
 import { Workspaces } from './entities/Workspaces';
+import { AuthModule } from './auth/auth.module';
+
+
 const getdata = async () => {
 
   return{
     DB_USERNAME: 'root',
     DB_PASSWORD: 'root',
-    DB_DATABASE: 'sleact'
+    DB_DATABASE: 'sleact2'
   }
 }
 @Module({
   imports: [
+    AuthModule,
     ConfigModule.forRoot({ isGlobal: true , load: [getdata]}),
     UsersModule,
     WorkspacesModule,
     ChannelsModule,
     DmsModule,
+    TypeOrmModule.forFeature([Users,ChannelMembers,WorkspaceMembers,Workspaces,Channels,
+    ChannelChats,]),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async(configService : ConfigService) => {
@@ -57,6 +63,7 @@ const getdata = async () => {
           Users,
           WorkspaceMembers,
           Workspaces,
+          
         ],
         migrations: [__dirname + '/src/migrations/*.ts'],
         cli: { migrationsDir: 'src/migrations' },

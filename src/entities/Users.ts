@@ -17,20 +17,25 @@ import {
   import { Mentions } from './Mentions';
   import { WorkspaceMembers } from './WorkspaceMembers';
   import { Workspaces } from './Workspaces';
-  
+  import {IsEmail,IsString,IsNotEmpty} from 'class-validator'
   @Index('email', ['email'], { unique: true })
   @Entity({ schema: 'sleact', name: 'users' })
   export class Users {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
-  
+
+    @IsEmail()
     @Column('varchar', { name: 'email', unique: true, length: 30 })
     email: string;
-  
+   
+    @IsString()
+    @IsNotEmpty()
     @Column('varchar', { name: 'nickname', length: 30 })
     nickname: string;
   
-    @Column('varchar', { name: 'password', length: 100, select: false })
+    @IsString()
+    @IsNotEmpty()
+    @Column('varchar', { name: 'password', length: 300, select: false })
     password: string;
   
     @CreateDateColumn()
