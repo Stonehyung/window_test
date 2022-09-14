@@ -25,6 +25,7 @@ import { WorkspaceMembers } from './entities/WorkspaceMembers';
 import { Workspaces } from './entities/Workspaces';
 import { AuthModule } from './auth/auth.module';
 
+
 const getdata = async () => {
 
   return{
@@ -41,7 +42,8 @@ const getdata = async () => {
     WorkspacesModule,
     ChannelsModule,
     DmsModule,
-    TypeOrmModule.forFeature([Users]),
+    TypeOrmModule.forFeature([Users,ChannelMembers,WorkspaceMembers,Workspaces,Channels,
+    ChannelChats,]),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async(configService : ConfigService) => {
